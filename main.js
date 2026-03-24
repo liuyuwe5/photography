@@ -90,4 +90,27 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxOverlay.classList.add('active');
     });
   });
+
+  // Copy Email to Clipboard
+  const copyEmailBtn = document.querySelector('.copy-email');
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = copyEmailBtn.getAttribute('data-email');
+      try {
+        await navigator.clipboard.writeText(email);
+        const textSpan = copyEmailBtn.querySelector('.email-text');
+        if (textSpan) {
+          const originalText = textSpan.innerText;
+          textSpan.innerText = 'Copied!';
+          setTimeout(() => {
+            textSpan.innerText = originalText;
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+        window.location.href = `mailto:${email}`; // Fallback if clipboard fails
+      }
+    });
+  }
 });
