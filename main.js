@@ -3,6 +3,16 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Inject Background Animations (Noise + Blob)
+  const bgContainer = document.createElement('div');
+  bgContainer.className = 'bg-animation-container';
+  bgContainer.innerHTML = '<div class="ambient-blob"></div><div class="ambient-blob blob-2"></div>';
+  document.body.prepend(bgContainer);
+
+  const noiseOverlay = document.createElement('div');
+  noiseOverlay.className = 'noise-overlay';
+  document.body.appendChild(noiseOverlay);
+
   // Page Transition: Fade in on load
   document.body.classList.add('page-transition');
   requestAnimationFrame(() => {
