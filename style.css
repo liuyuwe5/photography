@@ -224,3 +224,59 @@ header {
     margin-top: var(--spacing-md);
   }
 }
+
+/* Lightbox Styles */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  position: relative;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.lightbox-content iframe {
+  width: 80vw;
+  height: 45vw; /* 16:9 aspect ratio */
+  max-height: 80vh;
+  max-width: 142.22vh; /* 16:9 inverted */
+}
+
+.lightbox-close {
+  position: fixed;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  color: var(--text-color);
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10000;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  mix-blend-mode: difference;
+  color: #fff;
+}

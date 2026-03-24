@@ -44,4 +44,50 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fallback
     images.forEach(img => img.parentElement.classList.add('loaded'));
   }
+
+  // Lightbox Implementation
+  const lightboxOverlay = document.createElement('div');
+  lightboxOverlay.className = 'lightbox-overlay';
+  lightboxOverlay.innerHTML = `
+    <div class="lightbox-close">&times;</div>
+    <div class="lightbox-content"></div>
+  `;
+  document.body.appendChild(lightboxOverlay);
+
+  const lightboxContent = lightboxOverlay.querySelector('.lightbox-content');
+  const lightboxClose = lightboxOverlay.querySelector('.lightbox-close');
+
+  const closeLightbox = () => {
+    lightboxOverlay.classList.remove('active');
+    setTimeout(() => {
+      lightboxContent.innerHTML = '';
+      // Reset body scroll lock if desired, but cargo sometimes just overlays
+    }, 400); 
+  };
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxOverlay.addEventListener('click', (e) => {
+    // Close if clicking outside iframe/img
+    if (e.target === lightboxOverlay) closeLightbox();
+  });
+
+  const triggers = document.querySelectorAll('.lightbox-trigger');
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const type = trigger.getAttribute('data-type');
+      const src = trigger.getAttribute('data-src');
+      
+      if (!src) return;
+
+      if (type === 'youtube' || type === 'video') {
+        lightboxContent.innerHTML = `<iframe src="${src}?autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      } else {
+        lightboxContent.innerHTML = `<img src="${src}" alt="Expanded view" />`;
+      }
+      
+      lightboxOverlay.classList.add('active');
+    });
+  });
 });
