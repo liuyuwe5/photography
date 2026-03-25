@@ -152,7 +152,7 @@ header {
 
 .img-container {
   overflow: hidden;
-  background-color: var(--bg-color);
+  background-color: #111111;
   cursor: pointer;
 }
 
