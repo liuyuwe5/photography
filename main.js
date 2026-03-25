@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  
   // Copy Email to Clipboard
   const copyEmailBtn = document.querySelector('.copy-email');
   if (copyEmailBtn) {
