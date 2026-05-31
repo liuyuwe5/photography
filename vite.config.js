@@ -12,6 +12,7 @@ export default defineConfig({
         works: resolve(__dirname, 'works.html'),
         project_fish: resolve(__dirname, 'project_fish.html'),
         project_flower: resolve(__dirname, 'project_flower.html'),
+        project_blue: resolve(__dirname, 'project_blue.html'),
       }
     }
   }
