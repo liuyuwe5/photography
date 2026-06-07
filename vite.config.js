@@ -13,6 +13,7 @@ export default defineConfig({
         project_fish: resolve(__dirname, 'project_fish.html'),
         project_flower: resolve(__dirname, 'project_flower.html'),
         project_blue: resolve(__dirname, 'project_blue.html'),
+        project_houses: resolve(__dirname, 'project_houses.html'),
       }
     }
   }
